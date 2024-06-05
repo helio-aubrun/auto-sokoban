@@ -5,7 +5,7 @@ from menu import MainMenu
 pygame.init()
 
 # Paramètres de la fenêtre
-WIDTH, HEIGHT = 1200, 960
+WIDTH, HEIGHT = 800, 600
 TILESIZE = 40
 
 # Initialisation de la fenêtre
