@@ -63,4 +63,3 @@ class Game:
         retry_img = pygame.image.load("images/retry.png")
         self.retry_button_rect = pygame.Rect(self.width // 2 - 100, self.height - 140, 200, 80)
         self.screen.blit(retry_img, (self.width // 2 - retry_img.get_width() // 2, self.height - 160))
-
