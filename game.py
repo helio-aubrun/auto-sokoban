@@ -1,7 +1,6 @@
 import pygame
 import sys
 from map import Map
-from utils import draw_text
 
 class Game:
     def __init__(self, screen, width, height, tilesize, level):
