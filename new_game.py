@@ -77,35 +77,44 @@ class main():
         temp_y = self.player_y + change_y
         
         if self.map[temp_y][temp_x] == 0:
+            #pour de placement sur case de but
             if self.map [self.player_y] [self.player_x] == 6 :
                 self.map [self.player_y] [self.player_x] = 4
             else :
                 self.map [self.player_y] [self.player_x] = 0
+            #deplacement vers la nouvel case
             self.player_x = temp_x
             self.player_y = temp_y
             self.map [self.player_y] [self.player_x] = 1
         elif self.map[temp_y][temp_x] == 4:
+            #pour de placement sur case de but
             if self.map [self.player_y] [self.player_x] == 6 :
                 self.map [self.player_y] [self.player_x] = 4
             else :
                 self.map [self.player_y] [self.player_x] = 0
+            #deplacement vers la nouvel case
             self.player_x = temp_x
             self.player_y = temp_y
             self.map [self.player_y] [self.player_x] = 6
         elif self.map [temp_y][temp_x] == 2 and self.map [temp_y + change_y][temp_x + change_x] == 0:
+            #deplacement vers la nouvel case
             self.map [self.player_y] [self.player_x] = 0
             self.player_x = temp_x
             self.player_y = temp_y
             self.map [self.player_y] [self.player_x] = 1
+            #deplacement de lobjet
             self.map [temp_y + change_y][temp_x + change_x] = 2
         elif self.map [temp_y][temp_x] == 2 and self.map [temp_y + change_y][temp_x + change_x] == 4:
+            #pour de placement sur case de but
             if self.map [self.player_y] [self.player_x] == 6 :
                 self.map [self.player_y] [self.player_x] = 4
             else :
                 self.map [self.player_y] [self.player_x] = 0
+            #deplacement de 
             self.player_x = temp_x
             self.player_y = temp_y
             self.map [self.player_y] [self.player_x] = 1
+            #marquer un point
             self.map [temp_y + change_y][temp_x + change_x] = 3
             self.score += 1
         else:
