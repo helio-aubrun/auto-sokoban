@@ -1,135 +1,139 @@
 import pygame
 import sys
 
-def main():
-    # Initialize Pygame
-    pygame.init()
+class main():
+    def __init__ (self) :
 
-    # Set up the display surface
-    width = 600
-    heidth = 700
-    block_size = 60 #muste be a devider of 600
-    block_number =  width //  block_size
-    screen = pygame.display.set_mode((width, heidth))
+        # Initialize Pygame
+        pygame.init()
 
-    #map
-    map = [
-        [5, 5, 5, 0, 0, 0, 0, 0, 0, 0],
-        [5, 0, 0, 0, 0, 0, 4, 0, 0, 0],
-        [5, 0, 1, 2, 2, 0, 0, 0, 0, 0],
-        [0, 0, 0, 2, 3, 4, 0, 0, 0, 0],
-        [0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 3, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ]
+        # Set up the display surface
+        width = 600
+        heidth = 700
+        self.block_size = 60 #muste be a devider of 600
+        self.block_number =  width //  self.block_size
+        self.screen = pygame.display.set_mode((width, heidth))
 
-    #mur
-    mur_img = pygame.transform.scale(pygame.image.load("images/5jjk.png"), (width // block_number, width // block_number))
+        #map
+        self.map = [
+            [5, 5, 5, 0, 0, 0, 0, 0, 0, 0],
+            [5, 0, 0, 2, 0, 0, 4, 0, 0, 0],
+            [5, 0, 1, 2, 2, 0, 0, 0, 0, 0],
+            [0, 0, 0, 2, 3, 4, 0, 0, 0, 0],
+            [0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 3, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ]
 
-    #block_np
-    block_np_img = pygame.transform.scale(pygame.image.load("images/2jjk.png"), (width // block_number, width // block_number))
+        #mur
+        self.mur_img = pygame.transform.scale(pygame.image.load("images/5jjk.png"), (width // self.block_number, width // self.block_number))
 
-    #block_pl
-    block_pl_img = pygame.transform.scale(pygame.image.load("images/boxe_close_antic.png"), (width // block_number, width // block_number))
+        #block_np
+        self.block_np_img = pygame.transform.scale(pygame.image.load("images/2jjk.png"), (width // self.block_number, width // self.block_number))
 
-    #jouer
-    player_pos = (2, 2)
-    jouer_img = pygame.transform.scale(pygame.image.load("images/1jjk.png"), (width // block_number, width // block_number))
+        #block_pl
+        self.block_pl_img = pygame.transform.scale(pygame.image.load("images/boxe_close_antic.png"), (width // self.block_number, width // self.block_number))
 
-    #emplacement
-    emplacement_img = pygame.transform.scale(pygame.image.load("images/boxe_open_antic.png"), (width // block_number, width // block_number))
+        #jouer
+        self.jouer_img = pygame.transform.scale(pygame.image.load("images/1jjk.png"), (width // self.block_number, width // self.block_number))
 
-    #fond
-    fond_img = pygame.transform.scale(pygame.image.load("images/0.jpg"), (width // block_number, width // block_number))
+        #emplacement
+        self.emplacement_img = pygame.transform.scale(pygame.image.load("images/boxe_open_antic.png"), (width // self.block_number, width // self.block_number))
+
+        #fond
+        self.fond_img = pygame.transform.scale(pygame.image.load("images/0.jpg"), (width // self.block_number, width // self.block_number))
 
 
 
-    # Define player position
-    player_x, player_y = 0, 0  # Starting position
+        # Define player position
+        self.player_x, self.player_y = 2, 2  # Starting position
 
-    def is_valid_move(x, y, map):
-        # Convert coordinates to grid indices
-        grid_x = x // block_size
-        grid_y = y // block_size
+    def moving(self,change_x, change_y, map):
+
+        temp_x = self.player_x + change_x
+        temp_y = self.player_y + change_y
         
-        # Check if the destination cell is valid
-        if map[grid_y][grid_x] in [0, 2]:  # Assuming 0 is empty and 2 is a movable object
-            return True
+        if self.map[temp_y][temp_x] == 0:
+            self.map [self.player_y] [self.player_x] = 0
+            self.player_x = temp_x
+            self.player_y = temp_y
+            self.map [self.player_y] [self.player_x] = 1
+        elif self.map [temp_y][temp_x] == 2 and self.map [temp_y + change_y][temp_x + change_x] == 0:
+            self.map [self.player_y] [self.player_x] = 0
+            self.player_x = temp_x
+            self.player_y = temp_y
+            self.map [self.player_y] [self.player_x] = 1
+            self.map [temp_y + change_y][temp_x + change_x] = 2
+        elif self.map [temp_y][temp_x] == 2 and self.map [temp_y + change_y][temp_x + change_x] == 4:
+            self.map [self.player_y] [self.player_x] = 0
+            self.player_x = temp_x
+            self.player_y = temp_y
+            self.map [self.player_y] [self.player_x] = 1
+            self.map [temp_y + change_y][temp_x + change_x] = 3
         else:
             return False
+    def run (self):
+        # Main loop
+        running = True
 
-    # Main loop
-    running = True
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                elif event.type == pygame.KEYDOWN:
+                    # Check for arrow keys or WASD keys
+                    if event.key == pygame.K_UP or event.key == ord('z'):
+                        self.moving (change_x = 0, change_y = -1, map = map)
+                    elif event.key == pygame.K_DOWN or event.key == ord('s'):
+                        self.moving (change_x = 0, change_y = 1, map = map)
+                    elif event.key == pygame.K_LEFT or event.key == ord('q'):
+                        self.moving (change_x = -1, change_y = 0, map = map)
+                    elif event.key == pygame.K_RIGHT or event.key == ord('d'):
+                        self.moving (change_x = 1, change_y = 0, map = map)
 
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            """elif event.type == pygame.KEYDOWN:
-                # Check for arrow keys or WASD keys
-                if event.key == pygame.K_UP or event.key == ord('z'):
-                    # Move up
-                    new_y = player_y - block_size
-                    if is_valid_move(player_x, new_y, map):
-                        player_y -= block_size
-                elif event.key == pygame.K_DOWN or event.key == ord('s'):
-                    # Move down
-                    new_y = player_y + block_size
-                    if is_valid_move(player_x, new_y, map):
-                        player_y += block_size
-                elif event.key == pygame.K_LEFT or event.key == ord('q'):
-                    # Move left
-                    new_x = player_x - block_size
-                    if is_valid_move(new_x, player_y, map):
-                        player_x -= block_size
-                elif event.key == pygame.K_RIGHT or event.key == ord('d'):
-                    # Move right
-                    new_x = player_x + block_size
-                    if is_valid_move(new_x, player_y, map):
-                        player_x += block_size"""
-
-        # Clear the screen
-        screen.fill((255,255,255))
+            # Clear the screen
+            self.screen.fill((255,255,255))
 
 
 
-        for i in range (block_number) :
-            for j in range (block_number) :
-                screen.blit (fond_img, (i * block_size, j * block_size))
+            for i in range (self.block_number) :
+                for j in range (self.block_number) :
+                    self.screen.blit (self.fond_img, (i * self.block_size, j * self.block_size))
 
-        #affichage de la matrice avec des sprite
-        x, y = 0, 0
-        for ligne in map :
-            for colmn in ligne :
-                if colmn == 0:
-                    screen.blit (fond_img, (x, y))
-                elif colmn == 1:
-                    screen.blit (jouer_img, (x, y))
-                elif colmn == 2 :
-                    screen.blit (block_np_img, (x, y))
-                elif colmn == 3 :
-                    screen.blit (block_pl_img, (x, y))
-                elif colmn == 4 :
-                    screen.blit (emplacement_img, (x, y))
-                else :
-                    screen.blit (mur_img, (x, y))
-                x += block_size
-            y += block_size
-            x = 0
+            #affichage de la matrice avec des sprite
+            x, y = 0, 0
+            for ligne in self.map :
+                for colmn in ligne :
+                    if colmn == 0:
+                        self.screen.blit (self.fond_img, (x, y))
+                    elif colmn == 1:
+                        self.screen.blit (self.jouer_img, (x, y))
+                    elif colmn == 2 :
+                        self.screen.blit (self.block_np_img, (x, y))
+                    elif colmn == 3 :
+                        self.screen.blit (self.block_pl_img, (x, y))
+                    elif colmn == 4 :
+                        self.screen.blit (self.emplacement_img, (x, y))
+                    else :
+                        self.screen.blit (self.mur_img, (x, y))
+                    x += self.block_size
+                y += self.block_size
+                x = 0
 
-        # Update the display
-        pygame.display.flip()
+            # Update the display
+            pygame.display.flip()
 
-    pygame.quit()
-    sys.exit()
+        pygame.quit()
+        sys.exit()
 
 
     
 
 
 if __name__ == "__main__":
-    main()
+    game =  main ()
+    game.run ()
 
