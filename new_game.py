@@ -52,7 +52,7 @@ class main():
         #set score
         self.score = 0
         self.score_pos = (0, 630)
-        self.score_font = pygame.font.SysFont(None, 36)
+        self.font = pygame.font.SysFont(None, 36)
         self.max_score = 0
         for sublist in self.map:
             self.max_score += sublist.count(4)
@@ -61,11 +61,11 @@ class main():
 
     def aff_score(self):
 
-        score_render = self.score_font.render(str(self.score), True, (0, 0, 0))
+        score_render = self.font.render("score : " + str(self.score), True, (0, 0, 0))
         
         self.screen.blit(score_render, self.score_pos)
 
-        max_score_render = self.score_font.render(str(self.max_score), True, (0, 0, 0))
+        max_score_render = self.font.render("score max : " + str(self.max_score), True, (0, 0, 0))
 
         self.screen.blit(max_score_render, self.max_score_pos)
         
@@ -119,6 +119,7 @@ class main():
             self.score += 1
         else:
             return False
+        
     def run (self):
         # Main loop
         running = True
@@ -140,7 +141,7 @@ class main():
                             self.moving (change_x = 1, change_y = 0, map = map)
 
                 # Clear the screen
-                self.screen.fill((255,255,255))
+                self.screen.fill((245, 245, 245))
 
 
 
@@ -182,11 +183,13 @@ class main():
                     if event.type == pygame.QUIT:
                         running = False
                 # Clear the screen
-                self.screen.fill((255,255,255))
+                self.screen.fill((245, 245, 245))
 
-                message = self.score_font.render("Vous avez gagner", True, (0, 0, 0))
+                message = self.font.render("Vous avez gagner", True, (0, 0, 0))
+                score = self.font.render ("score : " + str (self.score), True, (0, 0, 0))
         
-                self.screen.blit(message, (200,200))
+                self.screen.blit (message, (200,200))
+                self.screen.blit (score, (200, 250))
 
                 # Update the display
                 pygame.display.flip()
