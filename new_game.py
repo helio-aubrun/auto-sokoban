@@ -77,10 +77,21 @@ class main():
         temp_y = self.player_y + change_y
         
         if self.map[temp_y][temp_x] == 0:
-            self.map [self.player_y] [self.player_x] = 0
+            if self.map [self.player_y] [self.player_x] == 6 :
+                self.map [self.player_y] [self.player_x] = 4
+            else :
+                self.map [self.player_y] [self.player_x] = 0
             self.player_x = temp_x
             self.player_y = temp_y
             self.map [self.player_y] [self.player_x] = 1
+        elif self.map[temp_y][temp_x] == 4:
+            if self.map [self.player_y] [self.player_x] == 6 :
+                self.map [self.player_y] [self.player_x] = 4
+            else :
+                self.map [self.player_y] [self.player_x] = 0
+            self.player_x = temp_x
+            self.player_y = temp_y
+            self.map [self.player_y] [self.player_x] = 6
         elif self.map [temp_y][temp_x] == 2 and self.map [temp_y + change_y][temp_x + change_x] == 0:
             self.map [self.player_y] [self.player_x] = 0
             self.player_x = temp_x
@@ -88,7 +99,10 @@ class main():
             self.map [self.player_y] [self.player_x] = 1
             self.map [temp_y + change_y][temp_x + change_x] = 2
         elif self.map [temp_y][temp_x] == 2 and self.map [temp_y + change_y][temp_x + change_x] == 4:
-            self.map [self.player_y] [self.player_x] = 0
+            if self.map [self.player_y] [self.player_x] == 6 :
+                self.map [self.player_y] [self.player_x] = 4
+            else :
+                self.map [self.player_y] [self.player_x] = 0
             self.player_x = temp_x
             self.player_y = temp_y
             self.map [self.player_y] [self.player_x] = 1
@@ -139,6 +153,9 @@ class main():
                             self.screen.blit (self.block_pl_img, (x, y))
                         elif colmn == 4 :
                             self.screen.blit (self.emplacement_img, (x, y))
+                        elif colmn == 6 :
+                            self.screen.blit (self.emplacement_img, (x, y))
+                            self.screen.blit (self.jouer_img, (x, y))
                         else :
                             self.screen.blit (self.mur_img, (x, y))
                         x += self.block_size
