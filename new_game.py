@@ -25,14 +25,14 @@ class main():
         #map
         self.map = [
             [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-            [5, 0, 0, 2, 0, 0, 4, 0, 0, 5],
-            [5, 0, 1, 0, 2, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 4, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+            [5, 4, 2, 0, 0, 0, 0, 0, 0, 5],
+            [5, 5, 5, 5, 1, 0, 2, 5, 5, 5],
+            [5, 4, 0, 5, 0, 4, 0, 5, 5, 5],
+            [5, 0, 0, 5, 0, 0, 0, 0, 5, 5],
+            [5, 0, 2, 5, 0, 0, 0, 0, 5, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 5, 5],
+            [5, 0, 0, 2, 0, 0, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 4, 5],
             [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
         ]
 
@@ -55,7 +55,7 @@ class main():
         self.fond_img = pygame.transform.scale(pygame.image.load("images/0.jpg"), (width // self.block_number, width // self.block_number))
 
         # Define player position
-        self.player_x, self.player_y = 2, 2  # Starting position
+        self.player_x, self.player_y = 4, 2  # Starting position
 
         #set score
         self.score = 0
@@ -70,7 +70,7 @@ class main():
 
     def reset_game(self):
         # Réinitialise la position du joueur
-        self.player_x, self.player_y = 2, 2  # Position de départ
+        self.player_x, self.player_y = 4, 2  # Position de départ
         
         # Réinitialise le score
         self.score = 0
@@ -78,14 +78,14 @@ class main():
         # Réinitialise la carte si nécessaire
         self.map = [
             [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-            [5, 0, 0, 2, 0, 0, 4, 0, 0, 5],
-            [5, 0, 1, 0, 2, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 4, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
-            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+            [5, 4, 2, 0, 0, 0, 0, 0, 0, 5],
+            [5, 5, 5, 5, 1, 0, 2, 5, 5, 5],
+            [5, 4, 0, 5, 0, 4, 0, 5, 5, 5],
+            [5, 0, 0, 5, 0, 0, 0, 0, 5, 5],
+            [5, 0, 2, 5, 0, 0, 0, 0, 5, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 5, 5],
+            [5, 0, 0, 2, 0, 0, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 4, 5],
             [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
         ]
         
