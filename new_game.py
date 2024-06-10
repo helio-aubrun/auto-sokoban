@@ -59,6 +59,7 @@ class main():
 
         #set score
         self.score = 0
+        self.nb_coup = 0
         self.score_pos = (0, 630)
         self.font = pygame.font.SysFont(None, 36)
         self.max_score = 0
@@ -74,6 +75,7 @@ class main():
         
         # Réinitialise le score
         self.score = 0
+        self.nb_coup = 0
         
         # Réinitialise la carte si nécessaire
         self.map = [
@@ -98,13 +100,13 @@ class main():
 
     def aff_score(self):
 
-        score_render = self.font.render("score : " + str(self.score), True, (0, 0, 0))
+        score_render = self.font.render("score : " + str(self.nb_coup), True, (0, 0, 0))
         
         self.screen.blit(score_render, self.score_pos)
 
-        max_score_render = self.font.render("score max : " + str(self.max_score), True, (0, 0, 0))
+        """max_score_render = self.font.render("score max : " + str(self.max_score), True, (0, 0, 0))
 
-        self.screen.blit(max_score_render, self.max_score_pos)
+        self.screen.blit(max_score_render, self.max_score_pos)"""
         
 
 
@@ -185,12 +187,16 @@ class main():
                         elif event.key == pygame.K_r:  # Utiliser la touche R comme bouton de réinitialisation
                             self.reset_game()
                         elif event.key == pygame.K_UP or event.key == ord('z'):
+                            self.nb_coup += 1
                             self.moving (change_x = 0, change_y = -1, map = map)
                         elif event.key == pygame.K_DOWN or event.key == ord('s'):
+                            self.nb_coup += 1
                             self.moving (change_x = 0, change_y = 1, map = map)
                         elif event.key == pygame.K_LEFT or event.key == ord('q'):
+                            self.nb_coup += 1
                             self.moving (change_x = -1, change_y = 0, map = map)
                         elif event.key == pygame.K_RIGHT or event.key == ord('d'):
+                            self.nb_coup += 1
                             self.moving (change_x = 1, change_y = 0, map = map)
 
                 # Clear the screen
@@ -239,7 +245,7 @@ class main():
                 self.screen.fill((245, 245, 245))
 
                 message = self.font.render("Vous avez gagner", True, (0, 0, 0))
-                score = self.font.render ("score : " + str (self.score), True, (0, 0, 0))
+                score = self.font.render ("score : " + str (self.nb_coup), True, (0, 0, 0))
         
                 self.screen.blit (message, (200,200))
                 self.screen.blit (score, (200, 250))
