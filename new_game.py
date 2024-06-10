@@ -60,6 +60,33 @@ class main():
         # set last player move
         self.game_states = []
 
+    def reset_game(self):
+        # Réinitialise la position du joueur
+        self.player_x, self.player_y = 2, 2  # Position de départ
+        
+        # Réinitialise le score
+        self.score = 0
+        
+        # Réinitialise la carte si nécessaire
+        self.map = [
+            [5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+            [5, 0, 0, 2, 0, 0, 4, 0, 0, 5],
+            [5, 0, 1, 0, 2, 0, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 4, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+            [5, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+            [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+        ]
+        
+        # Réinitialise l'historique des états
+        self.game_states.clear()
+
+        # Réactualise l'affichage
+        self.update_display()
+
 
     def aff_score(self):
 
@@ -140,12 +167,16 @@ class main():
                         running = False
                     elif event.type == pygame.KEYDOWN:
                         # Check for arrow keys or WASD keys
-                        if event.key == pygame.K_ESCAPE:  # Utiliser la touche Echap comme bouton de retour en arrière
+                        if event.key == pygame.K_e:  # Utiliser la touche Echap comme bouton de retour en arrière
                             if len(self.game_states) > 1:
                                 previous_state = self.game_states.pop()
                                 self.player_x, self.player_y = previous_state['player_x'], previous_state['player_y']
                                 self.map = previous_state['map']  # Mettre à jour la carte avec l'état précédent
-                        if event.key == pygame.K_UP or event.key == ord('z'):
+                        elif event.key == pygame.K_ESCAPE:
+                            running = False
+                        elif event.key == pygame.K_r:  # Utiliser la touche R comme bouton de réinitialisation
+                            self.reset_game()
+                        elif event.key == pygame.K_UP or event.key == ord('z'):
                             self.moving (change_x = 0, change_y = -1, map = map)
                         elif event.key == pygame.K_DOWN or event.key == ord('s'):
                             self.moving (change_x = 0, change_y = 1, map = map)
@@ -218,4 +249,3 @@ class main():
 if __name__ == "__main__":
     game =  main ()
     game.run ()
-
