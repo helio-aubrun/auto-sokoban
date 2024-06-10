@@ -57,6 +57,8 @@ class main():
         for sublist in self.map:
             self.max_score += sublist.count(4)
         self.max_score_pos = (300, 630)
+        # set last player move
+        self.game_states = []
 
 
     def aff_score(self):
@@ -72,6 +74,13 @@ class main():
 
 
     def moving(self,change_x, change_y, map):
+
+        current_state = {
+        'player_x': self.player_x,
+        'player_y': self.player_y,
+        'map': [row[:] for row in self.map]  # Crée une copie superficielle de la liste pour éviter de modifier l'origine
+        }
+        self.game_states.append(current_state)
 
         temp_x = self.player_x + change_x
         temp_y = self.player_y + change_y
@@ -131,6 +140,11 @@ class main():
                         running = False
                     elif event.type == pygame.KEYDOWN:
                         # Check for arrow keys or WASD keys
+                        if event.key == pygame.K_ESCAPE:  # Utiliser la touche Echap comme bouton de retour en arrière
+                            if len(self.game_states) > 1:
+                                previous_state = self.game_states.pop()
+                                self.player_x, self.player_y = previous_state['player_x'], previous_state['player_y']
+                                self.map = previous_state['map']  # Mettre à jour la carte avec l'état précédent
                         if event.key == pygame.K_UP or event.key == ord('z'):
                             self.moving (change_x = 0, change_y = -1, map = map)
                         elif event.key == pygame.K_DOWN or event.key == ord('s'):
