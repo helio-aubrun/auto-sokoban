@@ -1,11 +1,13 @@
 import pygame
 import sys
+from pygame.locals import *
 
 class main():
     def __init__ (self) :
 
         # Initialize Pygame
         pygame.init()
+        pygame.mixer.init()
 
         # Set up the display surface
         width = 600
@@ -13,6 +15,12 @@ class main():
         self.block_size = 60 #muste be a devider of 600
         self.block_number =  width //  self.block_size
         self.screen = pygame.display.set_mode((width, heidth))
+
+        pygame.mixer.music.load("music/song.mp3")
+        self.volume = 0.1  # Volume à 50%
+        pygame.mixer.music.set_volume(self.volume)
+        # Démarrer la lecture de la musique
+        pygame.mixer.music.play(-1)
 
         #map
         self.map = [
@@ -85,7 +93,7 @@ class main():
         self.game_states.clear()
 
         # Réactualise l'affichage
-        self.update_display()
+        pygame.display.flip()
 
 
     def aff_score(self):
@@ -238,7 +246,7 @@ class main():
 
                 # Update the display
                 pygame.display.flip()
-
+        pygame.mixer.music.stop()
         pygame.quit()
         sys.exit()
 
