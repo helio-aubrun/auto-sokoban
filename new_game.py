@@ -175,6 +175,8 @@ class main():
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         running = False
+                        pygame.quit()
+                        sys.exit()
                     elif event.type == pygame.KEYDOWN:
                         # Check for arrow keys or WASD keys
                         if event.key == pygame.K_e:  # Utiliser la touche Echap comme bouton de retour en arrière
@@ -184,6 +186,8 @@ class main():
                                 self.map = previous_state['map']  # Mettre à jour la carte avec l'état précédent
                         elif event.key == pygame.K_ESCAPE:
                             running = False
+                            pygame.quit()
+                            sys.exit()
                         elif event.key == pygame.K_r:  # Utiliser la touche R comme bouton de réinitialisation
                             self.reset_game()
                         elif event.key == pygame.K_UP or event.key == ord('z'):
@@ -201,7 +205,6 @@ class main():
 
                 # Clear the screen
                 self.screen.fill((245, 245, 245))
-
 
 
                 for i in range (self.block_number) :
