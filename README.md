@@ -24,8 +24,8 @@ Etant des étudiants en IA, il est normal de vouloir intégrer une IA à notre j
 
 ## Gameplay
 
-Le déplacement çe fait via les touches z, q, s, d, ou les flèches. La touche e sert à revenir sur le coup précédant. Le touche r à réinitialiser la partie. La touche échap à quitter
+Le déplacement çe fait via les touches z, q, s, d, ou les flèches. La touche e sert à revenir sur le coup précédant. Le touche r à réinitialiser la partie. La touche échap à quitter. La touche t active l'IA qui va jouer à la place du joueur. 
 
 ## Architecture
 
-Le projet est diviser en 2 fichier et 2 dossier. Le fichier main.py gère l'interface graphique et le jeu (le jeu étant simple un fichier suffit), le fichier ia.py contient comme son nom l'indique l'IA permettant de gagner avec le meilleur score. Les dossiers image et music contiennent quand à eux les fichiers nécessaire au focntionnement du jeu
+Le projet est diviser en 4 fichier et 2 dossier. Le fichier build_game.py gère le gameplay, la crétaion de la matrice et la logique du jeu. Le fichier display_game.py gère l'interface graphique. Le fichier main.py appel build_game afin de lancer le jeu. Le fichier ia.py contient comme son nom l'indique l'IA permettant de gagner avec le meilleur score. Les dossiers image et music contiennent quand à eux les fichiers nécessaire au focntionnement du jeu
