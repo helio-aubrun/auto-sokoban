@@ -24,7 +24,7 @@ Etant des étudiants en IA, il est normal de vouloir intégrer une IA à notre j
 
 ## Gameplay
 
-Le déplacement çe fait via les touches z, q, s, d, ou les flèches. La touche e sert à revenir sur le coup précédant. Le touche r à réinitialiser la partie. La touche échap à quitter
+Le déplacement çe fait via les touches z, q, s, d, ou les flèches. La touche e sert à revenir sur le coup précédant. Le touche r à réinitialiser la partie. La touche échap à quitter. La touche t active l'IA qui va jouer à la place du joueur. 
 
 ## Architecture
 
